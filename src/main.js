@@ -10,6 +10,7 @@ import "materialize-css/dist/js/materialize.min";
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
 
 Vue.config.productionTip = false;
 
@@ -30,11 +31,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 getAnalytics(app);
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+let application
+
+getAuth().onAuthStateChanged(() => {
+    if (!application) {
+      application = new Vue({
+        router,
+        store,
+        render: (h) => h(App),
+      }).$mount("#app");
+    }
+})
+
+
 
 
 

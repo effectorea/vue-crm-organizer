@@ -7,7 +7,7 @@ export default {
         console.log('thats ok')
         await signInWithEmailAndPassword(getAuth(),email, password)
       } catch (e) {
-
+        throw e
       }
     }
   }
