@@ -1,7 +1,29 @@
-import {getDatabase, ref, push} from "firebase/database";
+import { getDatabase, ref, push, get } from "firebase/database";
 
 export default {
   actions: {
+    async fetchCategories({commit, dispatch}) {
+      try {
+        const uid = await dispatch('getUserId')
+        const db = getDatabase()
+        const categories = (await get(ref(db, `/users/${uid}/categories`))).toJSON() || {}
+        // const cats = []
+        // Object.keys(categories).forEach(key => {
+        //   cats.push({
+        //     title: categories[key].title,
+        //     limit: categories[key].limit,
+        //     id: key
+        //   })
+        // })
+        // console.log(cats);
+        // return cats
+
+        return Object.keys(categories).map(key => ({...categories[key], id: key}))
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
+    },
     async createCategory({commit, dispatch}, {title, limit}) {
       try {
         const uid = await dispatch('getUserId')
