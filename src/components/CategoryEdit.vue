@@ -102,14 +102,18 @@ export default {
         this.$v.$touch()
         return
       }
-      // try {
-      //
-      //   this.$v.$reset()
-      //   this.$message('Категория была успешно изменена')
-      // } catch (e) {
-      //
-      // }
-
+      try {
+        const categoryData = {
+          id: this.current,
+          title: this.title,
+          limit: this.limit
+        }
+        await this.$store.dispatch('updateCategory', categoryData)
+        this.$v.$reset()
+        this.$message('Категория была успешно изменена')
+        this.$emit('updated', categoryData)
+      } catch (e) {
+      }
     }
   }
 }
