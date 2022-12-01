@@ -5,7 +5,8 @@ import "./registerServiceWorker";
 import dateFilter from "@/filters/date.filter";
 import router from "./router";
 import store from "./store";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loader"
+import directiveTooltip from "@/directives/directive.tooltip";
 import messagePlugin from "@/utils/message.plugin";
 import "materialize-css/dist/js/materialize.min";
 
@@ -21,6 +22,7 @@ Vue.use(Vuelidate)
 Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
 Vue.component('Loader', Loader)
+Vue.directive('tooltip', directiveTooltip)
 
 const firebaseConfig = {
   apiKey: "AIzaSyBtGHMkJRz1CB7BbWUDyUytc0kJaJ-63m8",
