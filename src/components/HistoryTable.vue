@@ -13,18 +13,22 @@
       </thead>
 
       <tbody>
-      <tr>
-        <td>1</td>
-        <td>10000</td>
-        <td>02 december 2022</td>
-        <td>Category name</td>
+      <tr v-for="(rec, index) in records" :key="rec.id">
+        <td>{{index + 1}}</td>
+        <td>{{rec.amount | currency('RUB')}}</td>
+        <td>{{rec.date | date}}</td>
+        <td>{{rec.categoryName}}</td>
         <td>
               <span class="white-text badge"
-                    :class="[type === 'outcome' ? 'red' : 'green']"
-              >{{type === 'outcome' ? 'Расход' : 'Приход'}}</span>
+                    :class="[rec.typeClass]"
+              >{{rec.typeText}}</span>
         </td>
         <td>
-          <button class="btn-small btn">
+          <button
+            v-tooltip="'Посмотреть запись'"
+            class="btn-small btn"
+            @click="$router.push('/detail/' + rec.id)"
+          >
             <i class="material-icons">open_in_new</i>
           </button>
         </td>
@@ -38,8 +42,11 @@
 
 export default {
   name: 'historyTable',
-  data: () => ({
-    type: 'income'
-  }),
+  props: {
+    records: {
+      required: true,
+      type: Array
+    }
+  }
 }
 </script>
