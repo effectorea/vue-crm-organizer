@@ -24,6 +24,7 @@
 <script>
 import NavBar from '@/components/NavBar'
 import SideBar from '@/components/SideBar'
+import messages from "@/utils/messages";
 
 export default {
   name: 'main-layout',
@@ -39,6 +40,16 @@ export default {
       await this.$store.dispatch('fetchInfo')
     }
     this.loading = false
+  },
+  computed: {
+    error() {
+      return this.$store.getters.error
+    }
+  },
+  watch: {
+    error(fbError) {
+      this.$error(messages[fbError.code] || 'Что-то пошло не так')
+    }
   }
 }
 
