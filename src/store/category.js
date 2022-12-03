@@ -24,6 +24,17 @@ export default {
         throw e
       }
     },
+    async fetchCategoryById({commit, dispatch}, id) {
+      try {
+        const uid = await dispatch('getUserId')
+        const db = getDatabase()
+        const category = ((await get(ref(db, `/users/${uid}/categories`))).child(id)).toJSON() || {}
+        return {...category, id: id}
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
+    },
     async updateCategory({commit, dispatch}, {title, limit, id}) {
       const uid = await dispatch('getUserId')
       const db = getDatabase()
