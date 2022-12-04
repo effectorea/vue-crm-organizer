@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="page-title">
-        <h3>История записей</h3>
+        <h3>{{'recHistory' | localize}}</h3>
       </div>
 
       <div class="history-chart">
@@ -13,7 +13,7 @@
 
       <p v-else-if="!records.length"
          class="center"
-      >Записей пока нет. <router-link to="/record">Добавить новую запись</router-link></p>
+      >{{'noRec' | localize }}. <router-link to="/record">{{'addNewRec' | localize}}</router-link></p>
 
       <section v-else>
 
@@ -40,6 +40,11 @@ import paginationMixin from "@/mixins/pagination.mixin";
 import { Pie } from 'vue-chartjs';
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('menuHistory')
+    }
+  },
   name: 'history',
   data: () => ({
     loading: true,

@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="page-title">
-        <h3>Планирование</h3>
+        <h3>{{'menuPlanning' | localize}}</h3>
         <h4>{{info.bill | currency('RUB')}}</h4>
       </div>
 
@@ -10,7 +10,7 @@
 
       <p v-else-if="!categories.length"
          class="center"
-      >Категорий не найдено. <router-link to="/categories">Добавить новую категорию</router-link></p>
+      >{{'noCatFound' | localize}}. <router-link to="/categories">{{'addNewCat' | localize}}</router-link></p>
 
       <section v-else>
         <div v-for="cat in categories" :key="cat.id">
@@ -36,6 +36,11 @@ import {mapGetters} from "vuex";
 import currencyFilter from "@/filters/currency.filter";
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('menuPlanning')
+    }
+  },
   name: 'planning',
   data: () => ({
     loading: true,

@@ -13,10 +13,10 @@
             id="description"
             type="text"
           >
-          <label for="description">Имя</label>
+          <label for="description">{{'profileName' | localize}}</label>
           <span
             v-if="$v.name.$dirty && !$v.name.required"
-            class="helper-text invalid">Поле не может быть пустым</span>
+            class="helper-text invalid">{{'enterProfileName' | localize}}</span>
         </div>
 
         <div class="switch">
@@ -30,7 +30,7 @@
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Обновить
+          {{'updateName' | localize}}
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -41,8 +41,14 @@
 <script>
 import {mapGetters, mapActions} from "vuex";
 import { required } from "vuelidate/lib/validators";
+import localizeFilter from "@/filters/localize.filter";
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('profileTitle')
+    }
+  },
   data: () => ({
     name: '',
     isRuLocale: true

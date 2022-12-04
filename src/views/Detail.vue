@@ -3,7 +3,7 @@
       <Loader v-if="loading"/>
       <div v-else-if="record">
             <div class="breadcrumb-wrap">
-              <router-link to="/history" class="breadcrumb">История</router-link>
+              <router-link to="/history" class="breadcrumb">{{'menuHistory' | localize}}</router-link>
               <a @click.prevent class="breadcrumb">
                 {{record.type === 'outcome' ? 'Расход' : 'Доход'}}
               </a>
@@ -13,9 +13,9 @@
                 <div class="card"
                 :class="[record.type === 'outcome' ? 'red' : 'green']">
                   <div class="card-content white-text">
-                    <p>Описание: {{record.description}}</p>
-                    <p>Сумма: {{record.amount | currency('RUB')}}</p>
-                    <p>Категория: {{record.categoryName}}</p>
+                    <p>{{'description' | localize}}: {{record.description}}</p>
+                    <p>{{'amount' | localize}}: {{record.amount | currency('RUB')}}</p>
+                    <p>{{'category' | localize}}: {{record.categoryName}}</p>
 
                     <small>{{record.date | date}}</small>
                   </div>
@@ -23,13 +23,18 @@
               </div>
             </div>
       </div>
-      <p v-else class="center">Запись с id={{$route.params.id}} не найдена</p>
+      <p v-else class="center">{{'recWith' | localize}} id={{$route.params.id}} {{'notFound' | localize}}</p>
     </div>
 </template>
 
 <script>
-
+import localizeFilter from "@/filters/localize.filter";
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('detail')
+    }
+  },
   name: 'detail',
   data: () => ({
     record: null,
