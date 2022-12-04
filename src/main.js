@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import {Vuelidate} from "vuelidate";
+import Paginate from 'vuejs-paginate';
 import "./registerServiceWorker";
 import dateFilter from "@/filters/date.filter";
 import router from "./router";
@@ -22,6 +23,7 @@ Vue.use(Vuelidate)
 Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
 Vue.component('Loader', Loader)
+Vue.component('Paginate', Paginate)
 Vue.directive('tooltip', directiveTooltip)
 
 const firebaseConfig = {
