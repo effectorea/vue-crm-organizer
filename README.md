@@ -19,6 +19,6 @@ npm run build
 ```
 npm run lint
 ```
+### Application link
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+https://vue-crm-d3ca9.firebaseapp.com/
