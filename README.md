@@ -1,5 +1,9 @@
 # vue-crm-project
 
+# Vue2 (optional api) project with firebase implementation.
+
+# Проект - что-то вроде личного кошелька или системы учета расходов.
+
 ## Project setup
 ```
 npm install
