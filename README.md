@@ -4,6 +4,10 @@
 
 ### Проект - что-то вроде личного кошелька или системы учета расходов.
 
+### Application link
+
+https://vue-crm-d3ca9.firebaseapp.com/
+
 ## Project setup
 ```
 npm install
@@ -23,6 +27,3 @@ npm run build
 ```
 npm run lint
 ```
-### Application link
-
-https://vue-crm-d3ca9.firebaseapp.com/
